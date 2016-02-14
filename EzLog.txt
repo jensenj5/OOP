@@ -1,0 +1,81 @@
+08:44:10.634587 : XXXXXXXXXXXXXXXXXXXXXXXXX Pay presence detected XXXXXXXXXXXXXXXXXXXX
+08:44:10.734656 : XXXXXXXXXXXXXXXXXXXXXXXXX Pay saturation(1340) detected XXXXXXXXXXXXXXXXXXXX
+08:44:10.735061 : ================= Checking Vehicle Presence on Primary ==================
+08:44:10.834595 : ***** zNoiseLevel(pay) = 670 - Zpercent =40
+08:44:10.834721 : ***** zNoiseLevel(pay) = 536 - Zpercent =30
+08:44:10.834818 : ***** zNoiseLevel(pay) = 402 - Zpercent =20
+08:44:10.835344 : ***** zNoiseLevel(pay) = 268 - Zpercent =10
+08:44:10.935469 : ***** zNoiseLevel(pay) = 134 - Zpercent =5
+08:44:10.935589 : ***** zThreshold8Detected ==1  and zNoiseLevel8(pay) = 107 - lngdata =50989
+08:44:10.935676 : ***** zThreshold7Detected ==1  and zNoiseLevel7(pay) = 93 - lngdata =51004
+08:44:10.935761 : ***** zThreshold6Detected ==1  and zNoiseLevel6(pay) = 80 - lngdata =51017
+08:44:10.935845 : ***** zThreshold5Detected ==1  and zNoiseLevel5(pay) = 67 - lngdata =51027
+08:44:10.935918 : ***** ThresholdZPercentReachedPP ==1  and zNoiseLevel(pay) = 67 - Zpercent =5
+08:44:10.936021 : -=-=-=-=-=-PP NoiseLevel = 40  xNoiseLevel = 40  lngdata = 51058, baseline = 51094 
+08:44:10.936106 : -=-=-=-=-=-PP NoiseLevel = 40  xNoiseLevel = 40  lngdata = 51063, baseline = 51094 
+08:44:10.936191 : -=-=-=-=-=-PP NoiseLevel = 40  xNoiseLevel = 40  lngdata = 51067, baseline = 51094 
+08:44:10.936294 : -=-=-=-=-=-PP NoiseLevel = 40  xNoiseLevel = 40  lngdata = 51071, baseline = 51094 
+08:44:10.936379 : -=-=-=-=-=-PP NoiseLevel = 40  xNoiseLevel = 40  lngdata = 51074, baseline = 51094 
+08:44:10.936456 : Vehicleprofile in pay : 0E1E0
+08:44:10.936528 : PP_EndConfirmCount : 0
+08:44:10.936601 : XXXXXXXXXXXXXXXXXXXXXXXPAY POINT END TIME 2483622 - 205000 
+08:44:10.936671 : VEHICLE ENDED IN PAYMENT POINT
+08:44:10.936744 : PPSequnce start1 : 101349 - PreSeqNum : 101349
+08:44:10.937120 : PayPoint.CurrentVehicle.SequenceNumber : 101349 - PreSeqNum : 101349
+08:44:10.937616 : PPSequnce end  : 101350
+08:44:10.937758 : 19404.09555 - 1 - NEW 1
+08:44:10.937833 : 1/0/0 0/0/0
+08:44:10.937938 : >>>>>>>>>>> Reached Primary Activation , curr base lane value -58312
+08:44:10.938013 : <-------- Time diff:(760) ms between sucessive vehicles and veh_next_Offset:(0)ms ---------->
+08:44:10.938086 : PrData->CurrentVehicle.SequenceNumber -101349
+08:44:10.938158 : PPData->CurrentVehicle.SequenceNumber -101350
+08:44:10.938240 : PPData->Currentvehicle.SaturationReach -0
+08:44:10.938327 : PPData->CurrentVehicle.SentMinSat -0
+08:44:10.938398 : PPData->CurrentState- 1
+08:44:10.938470 : PPData->CurrentVehicle.MaxSat -0
+08:44:10.938541 : Pr_TruckPresence -2000
+08:44:10.938613 : confirm presence : 0
+08:44:10.938685 : payque -lanenum: 0
+08:44:10.938758 : Calculate_ves_entry_speed-1,timediff : 36
+08:44:10.938829 : Pay Saturation 1340
+08:44:10.938901 : ifound , imatch 1 -0
+08:44:10.938973 : Lane Running Speed =53
+08:44:10.939045 : Lane Running speed :53
+08:44:10.939118 : Ves Entry speed :48
+08:44:10.939262 : Pay Saturation 1340
+08:44:10.939347 : Avgspeed 855.7
+08:44:10.939423 : ltime 0.5
+08:44:10.939495 : Ves_time 1 485 - TrigDist1 415 
+08:44:10.939567 : Ves_time 2 496 - TrigDist2 425 
+08:44:10.939642 : SAICTrigTime: 0.0
+08:44:10.939714 : SAICTrigTime 2 0 - SAICTrigDist 0 
+08:44:10.939793 : Ves Triggering: Ves_time1=429, Ves_time2=440,Ves_speed=48- TrigDist=415,425 -timediff=36
+08:44:10.939872 : tdelay @ trigger setup between successive vehicles :-1
+08:44:10.939942 : Diff between triggers, so setting triggertime 2 to Camera Reset time
+08:44:10.940022 : 0000024836222410103XXXXXXXXXXXXXXXX031004290310051903000434030005240210041902000509
+
+08:44:10.940140 : Low Speed Traffic = -1  and Low Speed Pay Saturation= -1
+08:44:10.940535 : 19404.09560 - 2 - NEW 1
+08:44:10.940636 : 1/1/0 0/0/0
+08:44:11.040508 : Axleloop(1)val(0):8 - 69254 -69246 -2483622 -257000
+08:44:11.041022 : Axle(1) Sample Time Width (0-84000),axnum -1
+08:44:11.140445 : 19404.09592 - 3 - NEW 1
+08:44:11.140551 : 1/1/1 0/0/0
+08:44:11.140692 : Axleloop(1)val(1):14 - 69260 -69246 -2483622 -397000
+08:44:11.141019 : >>>>>>>>> Reached Primary saturation - value 1579 >>>>>>>>>>
+08:44:11.141513 : >>>>> Looking for xNoise Value =47 and Vehicle Lowest 1578 at vehicle end >>>>>>>>
+08:44:11.141619 : Axleloop(2)val(0):11 - 69258 -69247 -2483622 -401000
+08:44:11.141986 : Axle(2) Sample Time Width (0-108000),axnum -1
+08:44:11.241499 : ***** zNoiseLevel(Primary)= 789 - Zpercent=40 - lngdata=57589
+08:44:11.241613 : Axle(1) Sample Time Width (0-88000),axnum -2
+08:44:11.241704 : ***** zNoiseLevel(Primary)= 631 - Zpercent=30 - lngdata=57717
+08:44:11.241801 : ***** zNoiseLevel(Primary)= 473 - Zpercent=20 - lngdata=57867
+08:44:11.242207 : ***** zNoiseLevel(Primary)= 315 - Zpercent=10 - lngdata=58024
+08:44:11.242350 : ***** zNoiseLevel(Primary)= 157 - Zpercent=5 - lngdata=58159
+08:44:11.242440 : Axleloop(2)val(1):15 - 69262 -69247 -2483622 -537000
+08:44:11.242775 : ***** zThreshold8Detected ==1  and zNoiseLevel8(primary) = 126 - lngdata =58200
+08:44:11.242888 : ***** zThreshold7Detected ==1  and zNoiseLevel7(primary) = 110 - lngdata =58218
+08:44:11.242962 : ***** zThreshold6Detected ==1  and zNoiseLevel6(primary) = 94 - lngdata =58218
+08:44:11.331835 : Received data from driver - 0410103XXXXXXXXXXXXXXXX
+08:44:11.341802 : Received data from driver - 0010103XXXXXXXXXXXXXXXX
+08:44:11.341885 : V01031
