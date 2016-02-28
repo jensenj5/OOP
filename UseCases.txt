@@ -1,0 +1,11 @@
+Use cases
+
+
+register account
+log in
+view account
+modify account information
+add vehicle (much more indepth)
+create charge
+make payment
+
