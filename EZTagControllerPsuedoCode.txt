@@ -1,0 +1,13 @@
+event handler car enters// event handler for when a car enters eztag
+	if !rfid //if there is no rfid throw error to external handler
+		throw error to error handler
+	else // if there is an rfid pass information to lane
+	 passes rfid to lane
+
+
+event handler care exits// event handler for when a car exits eztag
+	if !rfid //if there is no rfid throw error to external handler
+		throw error to error handler
+	else // if there is an rfid pass information to lane
+		passes rfid to lane
+
