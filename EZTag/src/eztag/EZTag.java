@@ -13,6 +13,7 @@ package eztag;
 import java.io.*;
 import java.util.*;
 import java.awt.*;
+import java.time.*;
 
 public class EZTag {
 
@@ -20,10 +21,9 @@ public class EZTag {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        //VirtualScanner v = new VirtualScanner();
-        //VirtualScannerUI vu = new VirtualScannerUI();
-        new VirtualScannerUI().setVisible(true);
+        //new VirtualScannerUI().setVisible(true);
+        new MainUI().setVisible(true);
+
     }
     
 }
