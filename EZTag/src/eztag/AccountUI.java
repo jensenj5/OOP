@@ -18,9 +18,9 @@ public class AccountUI extends javax.swing.JFrame {
         initComponents();
     }
     
-    public AccountUI(int acc) {
+    public AccountUI(Customer c) {
         initComponents();
-        Customer c = Customer.open(acc);
+        this.c = c;
         txtAccountNumber.setText(Integer.toString(c.getAccNum()));
         txtBalance.setText(Double.toString(c.getBalance()));
         txtFirstName.setText(c.getfName());
@@ -40,6 +40,9 @@ public class AccountUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        diaUpdateSuccess = new javax.swing.JDialog();
+        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         txtAddress = new javax.swing.JTextField();
         txtLastName = new javax.swing.JTextField();
         txtMake = new javax.swing.JTextField();
@@ -58,6 +61,43 @@ public class AccountUI extends javax.swing.JFrame {
         txtBalance = new javax.swing.JTextField();
         btnGo = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+
+        diaUpdateSuccess.setMinimumSize(new java.awt.Dimension(584, 155));
+
+        jLabel5.setFont(new java.awt.Font("Noto Sans", 0, 36)); // NOI18N
+        jLabel5.setText("Account Updated Succesfully!");
+
+        jButton1.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout diaUpdateSuccessLayout = new javax.swing.GroupLayout(diaUpdateSuccess.getContentPane());
+        diaUpdateSuccess.getContentPane().setLayout(diaUpdateSuccessLayout);
+        diaUpdateSuccessLayout.setHorizontalGroup(
+            diaUpdateSuccessLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(diaUpdateSuccessLayout.createSequentialGroup()
+                .addGroup(diaUpdateSuccessLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(diaUpdateSuccessLayout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jLabel5))
+                    .addGroup(diaUpdateSuccessLayout.createSequentialGroup()
+                        .addGap(250, 250, 250)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(46, Short.MAX_VALUE))
+        );
+        diaUpdateSuccessLayout.setVerticalGroup(
+            diaUpdateSuccessLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(diaUpdateSuccessLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(24, 24, 24))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,7 +128,7 @@ public class AccountUI extends javax.swing.JFrame {
             }
         });
 
-        btnExit.setText("Exit");
+        btnExit.setText("Log out");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -184,7 +224,7 @@ public class AccountUI extends javax.swing.JFrame {
 
     private void btnGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoActionPerformed
         // TODO add your handling code here:
-        Customer c = Customer.open(Integer.parseInt(txtAccountNumber.getText()));
+        //Customer c = Customer.open(Integer.parseInt(txtAccountNumber.getText()));
         c.setfName(txtFirstName.getText());
         c.setlName(txtLastName.getText());
         c.setAddress(txtAddress.getText());
@@ -192,12 +232,19 @@ public class AccountUI extends javax.swing.JFrame {
         c.setModel(txtModel.getText());
         c.setPlate(txtLicensePlate.getText());
         c.save();
+        diaUpdateSuccess.setVisible(true);
     }//GEN-LAST:event_btnGoActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
         dispose();
+        new Login().setVisible(true);
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        diaUpdateSuccess.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,10 +280,12 @@ public class AccountUI extends javax.swing.JFrame {
             }
         });
     }
-
+    private Customer c;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnGo;
+    private javax.swing.JDialog diaUpdateSuccess;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -244,6 +293,7 @@ public class AccountUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField txtAccountNumber;
     private javax.swing.JTextField txtAddress;

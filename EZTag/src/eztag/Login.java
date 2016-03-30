@@ -120,13 +120,21 @@ public class Login extends javax.swing.JFrame {
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
+        new EZTag().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoActionPerformed
         // TODO add your handling code here:
-        if(Customer.verify(Integer.parseInt(txtAccountNumber.getText()), txtUsername.getText(), txtPassword.getText())){
+        /*if(Customer.verify(Integer.parseInt(txtAccountNumber.getText()), txtUsername.getText(), txtPassword.getText())){
             new AccountUI(Integer.parseInt(txtAccountNumber.getText())).setVisible(true);
+        }*/
+        try{
+            Customer c = Customer.open(Integer.parseInt(txtAccountNumber.getText()), txtUsername.getText(), txtPassword.getText());
+            new AccountUI(c).setVisible(true);
+            dispose();
+        }catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_btnGoActionPerformed
 

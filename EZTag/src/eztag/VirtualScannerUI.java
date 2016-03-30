@@ -136,6 +136,7 @@ public class VirtualScannerUI extends javax.swing.JFrame {
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
+        new EZTag().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnExitActionPerformed
 

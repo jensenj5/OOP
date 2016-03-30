@@ -7,6 +7,7 @@
 package eztag;
 
 import java.io.*;
+import java.security.*;
 //import java.util.*;
 
 /**
@@ -21,7 +22,7 @@ public class Account implements Serializable{
     //Constructor
     public Account(String uName, String pass, String fName, String lName, String address) {
         this.uName = uName;
-        this.pass = pass;
+        this.pass = encrypt(pass);
         this.fName = fName;
         this.lName = lName;
         this.address = address;
@@ -69,5 +70,20 @@ public class Account implements Serializable{
     }
     
     //Other Functions
-    
+    public static String encrypt(String pass){
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] passBytes = pass.getBytes();
+            md.reset();
+            byte[] digested = md.digest(passBytes);
+            StringBuffer sb = new StringBuffer();
+            for(int i=0;i<digested.length;i++){
+                sb.append(Integer.toHexString(0xff & digested[i]));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
+   }
 }

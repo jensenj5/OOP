@@ -27,6 +27,11 @@ public class Register extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        accNumConfirm = new javax.swing.JDialog();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        btnClose = new javax.swing.JButton();
+        txtAccNum = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -49,6 +54,37 @@ public class Register extends javax.swing.JFrame {
         txtPassword = new javax.swing.JTextField();
         btnGo = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+
+        accNumConfirm.setBounds(new java.awt.Rectangle(100, 100, 597, 333));
+        accNumConfirm.setResizable(false);
+        accNumConfirm.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setFont(new java.awt.Font("Noto Sans", 0, 36)); // NOI18N
+        jLabel5.setText("Account created successfully!");
+        accNumConfirm.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 12, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
+        jLabel6.setText("Account Number: ");
+        accNumConfirm.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 96, -1, -1));
+
+        btnClose.setText("Close");
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
+        accNumConfirm.getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, -1, -1));
+
+        txtAccNum.setEditable(false);
+        txtAccNum.setBackground(new java.awt.Color(214, 214, 214));
+        txtAccNum.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
+        txtAccNum.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtAccNum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAccNumActionPerformed(evt);
+            }
+        });
+        accNumConfirm.getContentPane().add(txtAccNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 130, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -184,14 +220,29 @@ public class Register extends javax.swing.JFrame {
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
+        new EZTag().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoActionPerformed
         // TODO add your handling code here:
         Customer acc = new Customer(Double.parseDouble(txtPayment.getText()), txtMake.getText(), txtModel.getText(), txtLicensePlate.getText(), txtCCNumber.getText(), txtUsername.getText(), txtPassword.getText(), txtFirstName.getText(), txtLastName.getText(), txtAddress.getText());
+        txtAccNum.setText(Integer.toString(acc.getAccNum()));
+        accNumConfirm.setVisible(true);
         acc.save();
+        //dispose();
     }//GEN-LAST:event_btnGoActionPerformed
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // TODO add your handling code here:
+        accNumConfirm.dispose();
+        dispose();
+        new EZTag().setVisible(true);
+    }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void txtAccNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAccNumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAccNumActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,6 +280,8 @@ public class Register extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog accNumConfirm;
+    private javax.swing.JButton btnClose;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnGo;
     private javax.swing.JLabel jLabel1;
@@ -240,7 +293,10 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField txtAccNum;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtCCNumber;
     private javax.swing.JTextField txtFirstName;
