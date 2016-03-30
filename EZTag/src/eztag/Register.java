@@ -16,6 +16,7 @@ public class Register extends javax.swing.JFrame {
      */
     public Register() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -27,7 +28,7 @@ public class Register extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        accNumConfirm = new javax.swing.JDialog();
+        diaAccNumConfirm = new javax.swing.JDialog();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
@@ -55,17 +56,14 @@ public class Register extends javax.swing.JFrame {
         btnGo = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
 
-        accNumConfirm.setBounds(new java.awt.Rectangle(100, 100, 597, 333));
-        accNumConfirm.setResizable(false);
-        accNumConfirm.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        diaAccNumConfirm.setBounds(new java.awt.Rectangle(100, 100, 597, 333));
+        diaAccNumConfirm.setResizable(false);
 
         jLabel5.setFont(new java.awt.Font("Noto Sans", 0, 36)); // NOI18N
         jLabel5.setText("Account created successfully!");
-        accNumConfirm.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 12, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
         jLabel6.setText("Account Number: ");
-        accNumConfirm.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 96, -1, -1));
 
         btnClose.setText("Close");
         btnClose.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +71,6 @@ public class Register extends javax.swing.JFrame {
                 btnCloseActionPerformed(evt);
             }
         });
-        accNumConfirm.getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, -1, -1));
 
         txtAccNum.setEditable(false);
         txtAccNum.setBackground(new java.awt.Color(214, 214, 214));
@@ -84,7 +81,37 @@ public class Register extends javax.swing.JFrame {
                 txtAccNumActionPerformed(evt);
             }
         });
-        accNumConfirm.getContentPane().add(txtAccNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 130, -1));
+
+        javax.swing.GroupLayout diaAccNumConfirmLayout = new javax.swing.GroupLayout(diaAccNumConfirm.getContentPane());
+        diaAccNumConfirm.getContentPane().setLayout(diaAccNumConfirmLayout);
+        diaAccNumConfirmLayout.setHorizontalGroup(
+            diaAccNumConfirmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(diaAccNumConfirmLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel5))
+            .addGroup(diaAccNumConfirmLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel6)
+                .addGap(15, 15, 15)
+                .addComponent(txtAccNum, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(diaAccNumConfirmLayout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(btnClose))
+        );
+        diaAccNumConfirmLayout.setVerticalGroup(
+            diaAccNumConfirmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(diaAccNumConfirmLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel5)
+                .addGap(34, 34, 34)
+                .addGroup(diaAccNumConfirmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addGroup(diaAccNumConfirmLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(txtAccNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(65, 65, 65)
+                .addComponent(btnClose))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -226,16 +253,18 @@ public class Register extends javax.swing.JFrame {
 
     private void btnGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoActionPerformed
         // TODO add your handling code here:
+        
         Customer acc = new Customer(Double.parseDouble(txtPayment.getText()), txtMake.getText(), txtModel.getText(), txtLicensePlate.getText(), txtCCNumber.getText(), txtUsername.getText(), txtPassword.getText(), txtFirstName.getText(), txtLastName.getText(), txtAddress.getText());
         txtAccNum.setText(Integer.toString(acc.getAccNum()));
-        accNumConfirm.setVisible(true);
+        diaAccNumConfirm.setLocationRelativeTo(null);
+        diaAccNumConfirm.setVisible(true);
         acc.save();
         //dispose();
     }//GEN-LAST:event_btnGoActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         // TODO add your handling code here:
-        accNumConfirm.dispose();
+        diaAccNumConfirm.dispose();
         dispose();
         new EZTag().setVisible(true);
     }//GEN-LAST:event_btnCloseActionPerformed
@@ -280,10 +309,10 @@ public class Register extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDialog accNumConfirm;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnGo;
+    private javax.swing.JDialog diaAccNumConfirm;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

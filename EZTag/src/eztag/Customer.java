@@ -93,36 +93,29 @@ class Customer extends Account {
             ex.printStackTrace();
         }
     }
-    /*
-    public static Boolean verify(int accNum, String uName, String pw){
+    
+    public Boolean verify(String uName, String pw){
         try {
-            FileInputStream streamIn = new FileInputStream("accounts/" + accNum + ".ser");
-            ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);
-            Customer c = (Customer) objectinputstream.readObject();
-           if((c.getuName() != uName) || (c.getPass() != pw)){
-               Exception e = new Exception();
-               throw e;
-           }
+            pw = Account.encrypt(pw);
+            if(!(this.getuName().equals(uName)) || !(this.getPass().equals(pw)))
+                throw new Exception();
         }catch (Exception e) {
             e.printStackTrace();
             return false;
         }
         return true;
-    }*/
+    }
     
-    public static Customer open(int accNum, String uName, String pw){
+    public static Customer open(int accNum){
         try {
             FileInputStream streamIn = new FileInputStream("accounts/" + accNum + ".ser");
             ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);
             Customer c = (Customer) objectinputstream.readObject();
-            pw = Account.encrypt(pw);
-            if(!(c.getuName().equals(uName)) || !(c.getPass().equals(pw)))
-                throw new Exception();
             return c;
         }catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 }
 

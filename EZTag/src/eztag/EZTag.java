@@ -16,6 +16,7 @@ public class EZTag extends javax.swing.JFrame {
      */
     public EZTag() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

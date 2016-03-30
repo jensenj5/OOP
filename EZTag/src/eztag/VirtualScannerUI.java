@@ -16,6 +16,7 @@ public class VirtualScannerUI extends javax.swing.JFrame {
      */
     public VirtualScannerUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

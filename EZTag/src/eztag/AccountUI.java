@@ -16,10 +16,12 @@ public class AccountUI extends javax.swing.JFrame {
      */
     public AccountUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     
     public AccountUI(Customer c) {
         initComponents();
+        this.setLocationRelativeTo(null);
         this.c = c;
         txtAccountNumber.setText(Integer.toString(c.getAccNum()));
         txtBalance.setText(Double.toString(c.getBalance()));
@@ -232,7 +234,9 @@ public class AccountUI extends javax.swing.JFrame {
         c.setModel(txtModel.getText());
         c.setPlate(txtLicensePlate.getText());
         c.save();
+        diaUpdateSuccess.setLocationRelativeTo(null);
         diaUpdateSuccess.setVisible(true);
+        
     }//GEN-LAST:event_btnGoActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed

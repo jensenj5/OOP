@@ -16,6 +16,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -27,7 +28,12 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
+        diaNoAcc = new javax.swing.JDialog();
+        jLabel5 = new javax.swing.JLabel();
+        btnCloseAcc = new javax.swing.JButton();
+        diaInvalidLogin = new javax.swing.JDialog();
+        jLabel6 = new javax.swing.JLabel();
+        btnCloseLogin = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
@@ -37,7 +43,73 @@ public class Login extends javax.swing.JFrame {
         btnExit = new javax.swing.JButton();
         btnGo = new javax.swing.JButton();
 
-        jButton2.setText("jButton2");
+        diaNoAcc.setMinimumSize(new java.awt.Dimension(584, 155));
+
+        jLabel5.setFont(new java.awt.Font("Noto Sans", 0, 36)); // NOI18N
+        jLabel5.setText("Invalid Account Number!");
+
+        btnCloseAcc.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        btnCloseAcc.setText("OK");
+        btnCloseAcc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseAccActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout diaNoAccLayout = new javax.swing.GroupLayout(diaNoAcc.getContentPane());
+        diaNoAcc.getContentPane().setLayout(diaNoAccLayout);
+        diaNoAccLayout.setHorizontalGroup(
+            diaNoAccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(diaNoAccLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(diaNoAccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel5)
+                    .addComponent(btnCloseAcc, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(76, Short.MAX_VALUE))
+        );
+        diaNoAccLayout.setVerticalGroup(
+            diaNoAccLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(diaNoAccLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(btnCloseAcc)
+                .addGap(26, 26, 26))
+        );
+
+        diaInvalidLogin.setMinimumSize(new java.awt.Dimension(584, 155));
+
+        jLabel6.setFont(new java.awt.Font("Noto Sans", 0, 36)); // NOI18N
+        jLabel6.setText("Invalid Username or Password!");
+
+        btnCloseLogin.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
+        btnCloseLogin.setText("OK");
+        btnCloseLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseLoginActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout diaInvalidLoginLayout = new javax.swing.GroupLayout(diaInvalidLogin.getContentPane());
+        diaInvalidLogin.getContentPane().setLayout(diaInvalidLoginLayout);
+        diaInvalidLoginLayout.setHorizontalGroup(
+            diaInvalidLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(diaInvalidLoginLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(diaInvalidLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel6)
+                    .addComponent(btnCloseLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+        diaInvalidLoginLayout.setVerticalGroup(
+            diaInvalidLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(diaInvalidLoginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(btnCloseLogin)
+                .addGap(24, 24, 24))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -130,13 +202,30 @@ public class Login extends javax.swing.JFrame {
             new AccountUI(Integer.parseInt(txtAccountNumber.getText())).setVisible(true);
         }*/
         try{
-            Customer c = Customer.open(Integer.parseInt(txtAccountNumber.getText()), txtUsername.getText(), txtPassword.getText());
-            new AccountUI(c).setVisible(true);
-            dispose();
+            Customer c = Customer.open(Integer.parseInt(txtAccountNumber.getText()));
+            if(c.verify(txtUsername.getText(), txtPassword.getText())){
+                new AccountUI(c).setVisible(true);
+                dispose();
+            }else{
+                diaInvalidLogin.setVisible(true);
+                diaInvalidLogin.setLocationRelativeTo(null);
+            }
         }catch (Exception e) {
             e.printStackTrace();
+            diaNoAcc.setVisible(true);
+            diaNoAcc.setLocationRelativeTo(null);
         }
     }//GEN-LAST:event_btnGoActionPerformed
+
+    private void btnCloseAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseAccActionPerformed
+        // TODO add your handling code here:
+        diaNoAcc.dispose();
+    }//GEN-LAST:event_btnCloseAccActionPerformed
+
+    private void btnCloseLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseLoginActionPerformed
+        // TODO add your handling code here:
+        diaInvalidLogin.dispose();
+    }//GEN-LAST:event_btnCloseLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,12 +263,17 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCloseAcc;
+    private javax.swing.JButton btnCloseLogin;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnGo;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JDialog diaInvalidLogin;
+    private javax.swing.JDialog diaNoAcc;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField txtAccountNumber;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUsername;

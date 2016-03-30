@@ -70,7 +70,7 @@ public class Account implements Serializable{
     }
     
     //Other Functions
-    public static String encrypt(String pass){
+    public static String encrypt(String pass){//Encrypts password using MD5
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] passBytes = pass.getBytes();
@@ -86,4 +86,8 @@ public class Account implements Serializable{
         }
         return null;
    }
+    
+    //public static int search(String user){
+        //try
+    //}
 }
