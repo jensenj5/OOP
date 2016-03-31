@@ -13,7 +13,7 @@ package eztag;
 import java.io.*;
 import java.util.*;
 
-class Customer extends Account {
+public class Customer extends Account {
     
     //Variables
     private int accNum;
@@ -116,6 +116,10 @@ class Customer extends Account {
             e.printStackTrace();
             return null;
         }
+    }
+    
+    public void generateCharge(int len, double price){
+        balance -= (len * price);
     }
 }
 

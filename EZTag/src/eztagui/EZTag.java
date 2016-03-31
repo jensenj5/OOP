@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eztag;
+package eztagui;
 
 /**
  *
@@ -101,7 +101,7 @@ public class EZTag extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        new Login().setVisible(true);
+        new LoginUI().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -112,7 +112,7 @@ public class EZTag extends javax.swing.JFrame {
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
-        new Register().setVisible(true);
+        new RegisterUI().setVisible(true);
         dispose();
     }//GEN-LAST:event_btnRegisterActionPerformed
 

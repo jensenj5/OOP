@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eztag;
+package eztagui;
+
+import eztag.VirtualScanner;
+import eztagui.EZTag;
 
 /**
  *
@@ -28,7 +31,7 @@ public class VirtualScannerUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btnGo = new javax.swing.JButton();
         EntranceLabel = new javax.swing.JLabel();
         RFIDLabel = new javax.swing.JLabel();
         ExitLabel = new javax.swing.JLabel();
@@ -39,10 +42,10 @@ public class VirtualScannerUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("GO!");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGo.setText("GO!");
+        btnGo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnGoActionPerformed(evt);
             }
         });
 
@@ -79,7 +82,7 @@ public class VirtualScannerUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnExit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(btnGo)
                         .addGap(39, 39, 39))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -109,7 +112,7 @@ public class VirtualScannerUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnGo)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnExit)
@@ -124,12 +127,12 @@ public class VirtualScannerUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoActionPerformed
         // TODO add your handling code here:
-        VirtualScanner.setRfid(Integer.parseInt(txtRFID.getText()));
-        VirtualScanner.setEntrance(Integer.parseInt(txtEntrance.getText()));
-        VirtualScanner.setExit(Integer.parseInt(txtExit.getText()));
-    }//GEN-LAST:event_jButton1ActionPerformed
+        new VirtualScanner(Integer.parseInt(txtRFID.getText()), Integer.parseInt(txtEntrance.getText()), Integer.parseInt(txtExit.getText()));
+        new EZTag().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnGoActionPerformed
 
     private void txtRFIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRFIDActionPerformed
         // TODO add your handling code here:
@@ -181,7 +184,7 @@ public class VirtualScannerUI extends javax.swing.JFrame {
     private javax.swing.JLabel ExitLabel;
     private javax.swing.JLabel RFIDLabel;
     private javax.swing.JButton btnExit;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnGo;
     private javax.swing.JTextField txtEntrance;
     private javax.swing.JTextField txtExit;
     private javax.swing.JTextField txtRFID;

@@ -10,29 +10,51 @@ package eztag;
  * @author jjred88
  */
 public class VirtualScanner {
-    private static int rfid, entrance, exit;
-
-    public static int getRfid() {
+    private int rfid, entrance, exit;
+    
+    //Constructor
+    public VirtualScanner(int rfid, int entrance, int exit) {
+        this.rfid = rfid;
+        this.entrance = entrance;
+        this.exit = exit;
+        try{
+            Customer c = Customer.open(rfid);
+            c.generateCharge(Length(), new Lane(entrance, exit).getPrice());
+            c.save();
+        }catch(Exception e){
+            e.printStackTrace();
+            //This will pass license plate info from camera to DMV to be manually billed
+        }
+        
+    }
+    
+    //Setters and Getters
+    public int getRfid() {
         return rfid;
     }
 
-    public static void setRfid(int rfid) {
-        VirtualScanner.rfid = rfid;
+    public void setRfid(int rfid) {
+        this.rfid = rfid;
     }
 
-    public static int getEntrance() {
+    public int getEntrance() {
         return entrance;
     }
 
-    public static void setEntrance(int entrance) {
-        VirtualScanner.entrance = entrance;
+    public void setEntrance(int entrance) {
+        this.entrance = entrance;
     }
 
-    public static int getExit() {
+    public int getExit() {
         return exit;
     }
 
-    public static void setExit(int exit) {
-        VirtualScanner.exit = exit;
+    public void setExit(int exit) {
+        this.exit = exit;
+    }
+    
+    //Override setter
+    public int Length(){
+        return Math.abs(entrance - exit);
     }
 }
