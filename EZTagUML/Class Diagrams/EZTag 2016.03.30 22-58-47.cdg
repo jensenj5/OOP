@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="EZTag">
+  <ClassDiagramComponents>
+    <Class name="Account" package="eztag" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="uName" type="String" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="uName"/>
+          <Argument type="String" name="pass"/>
+          <Argument type="String" name="fName"/>
+          <Argument type="String" name="lName"/>
+          <Argument type="String" name="address"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getuName" returnType="String" visibility="public"/>
+        <Method name="setuName" returnType="void" visibility="public">
+          <Argument type="String" name="uName"/>
+        </Method>
+        <Method name="getPass" returnType="String" visibility="public"/>
+        <Method name="setPass" returnType="void" visibility="public">
+          <Argument type="String" name="pass"/>
+        </Method>
+        <Method name="getfName" returnType="String" visibility="public"/>
+        <Method name="setfName" returnType="void" visibility="public">
+          <Argument type="String" name="fName"/>
+        </Method>
+        <Method name="getlName" returnType="String" visibility="public"/>
+        <Method name="setlName" returnType="void" visibility="public">
+          <Argument type="String" name="lName"/>
+        </Method>
+        <Method name="getAddress" returnType="String" visibility="public"/>
+        <Method name="setAddress" returnType="void" visibility="public">
+          <Argument type="String" name="address"/>
+        </Method>
+        <Method name="encrypt" returnType="String" visibility="public" isStatic="true">
+          <Argument type="String" name="pass"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Customer" package="eztag" visibility="public" xPosition="-42.0" yPosition="-69.0">
+      <Fields>
+        <Field name="accNum" type="int" visibility="private"/>
+        <Field name="balance" type="double" visibility="private"/>
+        <Field name="make" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="double" name="balance"/>
+          <Argument type="String" name="make"/>
+          <Argument type="String" name="model"/>
+          <Argument type="String" name="plate"/>
+          <Argument type="String" name="ccNum"/>
+          <Argument type="String" name="uName"/>
+          <Argument type="String" name="pass"/>
+          <Argument type="String" name="fName"/>
+          <Argument type="String" name="lName"/>
+          <Argument type="String" name="address"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getAccNum" returnType="int" visibility="public"/>
+        <Method name="setAccNum" returnType="void" visibility="public">
+          <Argument type="int" name="accNum"/>
+        </Method>
+        <Method name="getBalance" returnType="double" visibility="public"/>
+        <Method name="setBalance" returnType="void" visibility="public">
+          <Argument type="double" name="balance"/>
+        </Method>
+        <Method name="getMake" returnType="String" visibility="public"/>
+        <Method name="setMake" returnType="void" visibility="public">
+          <Argument type="String" name="make"/>
+        </Method>
+        <Method name="getModel" returnType="String" visibility="public"/>
+        <Method name="setModel" returnType="void" visibility="public">
+          <Argument type="String" name="model"/>
+        </Method>
+        <Method name="getPlate" returnType="String" visibility="public"/>
+        <Method name="setPlate" returnType="void" visibility="public">
+          <Argument type="String" name="plate"/>
+        </Method>
+        <Method name="getCcNum" returnType="String" visibility="public"/>
+        <Method name="setCcNum" returnType="void" visibility="public">
+          <Argument type="String" name="ccNum"/>
+        </Method>
+        <Method name="save" returnType="void" visibility="public"/>
+        <Method name="verify" returnType="Boolean" visibility="public">
+          <Argument type="String" name="uName"/>
+          <Argument type="String" name="pw"/>
+        </Method>
+        <Method name="open" returnType="Customer" visibility="public" isStatic="true">
+          <Argument type="int" name="accNum"/>
+        </Method>
+        <Method name="generateCharge" returnType="void" visibility="public">
+          <Argument type="int" name="len"/>
+          <Argument type="double" name="price"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Employee" package="eztag" visibility="public" xPosition="415.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="uName"/>
+          <Argument type="String" name="pass"/>
+          <Argument type="String" name="fName"/>
+          <Argument type="String" name="lName"/>
+          <Argument type="String" name="address"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Lane" package="eztag" visibility="public" xPosition="5.0" yPosition="534.0">
+      <Fields>
+        <Field name="price" type="double" visibility="private"/>
+        <Field name="direction" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="entrance"/>
+          <Argument type="int" name="exit"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getPrice" returnType="double" visibility="public"/>
+        <Method name="setPrice" returnType="void" visibility="public">
+          <Argument type="double" name="price"/>
+        </Method>
+        <Method name="getDirection" returnType="String" visibility="public"/>
+        <Method name="setDirection" returnType="void" visibility="public">
+          <Argument type="String" name="direction"/>
+        </Method>
+        <Method name="setPrice" returnType="void" visibility="public"/>
+        <Method name="setDirection" returnType="void" visibility="public">
+          <Argument type="int" name="entrance"/>
+          <Argument type="int" name="exit"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="VirtualScanner" package="eztag" visibility="public" xPosition="620.0" yPosition="534.0">
+      <Fields>
+        <Field name="rfid" type="int" visibility="private"/>
+        <Field name="entrance" type="int" visibility="private"/>
+        <Field name="exit" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="rfid"/>
+          <Argument type="int" name="entrance"/>
+          <Argument type="int" name="exit"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getRfid" returnType="int" visibility="public"/>
+        <Method name="setRfid" returnType="void" visibility="public">
+          <Argument type="int" name="rfid"/>
+        </Method>
+        <Method name="getEntrance" returnType="int" visibility="public"/>
+        <Method name="setEntrance" returnType="void" visibility="public">
+          <Argument type="int" name="entrance"/>
+        </Method>
+        <Method name="getExit" returnType="int" visibility="public"/>
+        <Method name="setExit" returnType="void" visibility="public">
+          <Argument type="int" name="exit"/>
+        </Method>
+        <Method name="Length" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="AccountUI" package="eztagui" visibility="public" xPosition="820.0" yPosition="395.0">
+      <Fields>
+        <Field name="c" type="Customer" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Customer" name="c"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="EZTag" package="eztagui" visibility="public" xPosition="351.0" yPosition="378.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LoginUI" package="eztagui" visibility="public" xPosition="608.0" yPosition="412.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="RegisterUI" package="eztagui" visibility="public" xPosition="64.0" yPosition="395.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="VirtualScannerUI" package="eztagui" visibility="public" xPosition="377.0" yPosition="553.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation name="" source="eztagui.EZTag" target="eztagui.VirtualScannerUI" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation name="" source="eztagui.LoginUI" target="eztag.Customer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation name="" source="eztag.VirtualScanner" target="eztag.Lane" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation name="" source="eztagui.EZTag" target="eztagui.LoginUI" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="c" source="eztagui.AccountUI" target="eztag.Customer" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation name="" source="eztagui.RegisterUI" target="eztag.Customer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation name="" source="eztagui.VirtualScannerUI" target="eztag.VirtualScanner" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="eztag.Customer" target="eztag.Customer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="eztag.Employee" target="eztag.Account"/>
+    <UseRelation name="" source="eztagui.LoginUI" target="eztagui.AccountUI" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="eztag.Customer" target="eztag.Account"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
