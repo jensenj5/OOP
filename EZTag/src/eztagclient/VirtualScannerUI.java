@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eztagui;
+package eztagclient;
 
-import eztag.VirtualScanner;
-import eztagui.EZTag;
+import eztagserver.VirtualScanner;
+import eztagclient.EZTag;
 
 /**
  *
