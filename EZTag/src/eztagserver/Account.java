@@ -87,7 +87,50 @@ public class Account implements Serializable{
         return null;
    }
     
-    //public static int search(String user){
-        //try
-    //}
+    public Boolean verify(String uName, String pw){
+        try {
+            pw = encrypt(pw);
+            if(!(this.getuName().equals(uName)) || !(this.getPass().equals(pw)))
+                throw new Exception();
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    
+    public static String search(String s){
+        File folderToScan = new File("accounts/."); 
+        File[] listOfFiles = folderToScan.listFiles();
+        String target_file ;
+        for (int i = 0; i < listOfFiles.length; i++) {
+            if (listOfFiles[i].isFile()) {
+                target_file = listOfFiles[i].getName();
+                if (target_file.contains(s))
+                    return target_file;
+            }
+        }
+        
+        return "";
+    }
+    
+    public static Account open(String s){
+        try {
+            String fileName = search(encrypt(s));
+            Account c;
+            if(fileName.isEmpty())
+                throw new Exception("No such account");
+            
+            FileInputStream streamIn = new FileInputStream("accounts/" + fileName);
+            ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);
+            if(fileName.endsWith(".ser"))
+                c = (Employee) objectinputstream.readObject();
+            else
+                c = (Customer) objectinputstream.readObject();
+            return c;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

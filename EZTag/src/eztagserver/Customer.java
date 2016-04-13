@@ -85,36 +85,17 @@ public class Customer extends Account {
     //Other functions
     public void save(){
         try {
-            FileOutputStream fout = new FileOutputStream("accounts/" + accNum + ".ser");
+            String fileName = search(encrypt(uName));
+            if(!fileName.isEmpty())
+                throw new Exception("Username already in use!");
+            FileOutputStream fout = new FileOutputStream("accounts/" + encrypt(uName) + "." + accNum);
             ObjectOutputStream oos = new ObjectOutputStream(fout);
             oos.writeObject(this);
             oos.close();
         }catch(Exception ex){
+            System.out.println(ex.getMessage());
             ex.printStackTrace();
-        }
-    }
-    
-    public Boolean verify(String uName, String pw){
-        try {
-            pw = Account.encrypt(pw);
-            if(!(this.getuName().equals(uName)) || !(this.getPass().equals(pw)))
-                throw new Exception();
-        }catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
-    
-    public static Customer open(int accNum){
-        try {
-            FileInputStream streamIn = new FileInputStream("accounts/" + accNum + ".ser");
-            ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);
-            Customer c = (Customer) objectinputstream.readObject();
-            return c;
-        }catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            System.exit(0);
         }
     }
     

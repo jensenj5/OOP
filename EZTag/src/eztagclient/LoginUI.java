@@ -5,8 +5,8 @@
  */
 package eztagclient;
 
-import eztagserver.Customer;
-import eztagclient.EZTag;
+import eztagserver.*;
+//import eztagclient.*;
 
 /**
  *
@@ -205,13 +205,22 @@ public class LoginUI extends javax.swing.JFrame {
             new AccountUI(Integer.parseInt(txtAccountNumber.getText())).setVisible(true);
         }*/
         try{
-            Customer c = Customer.open(Integer.parseInt(txtAccountNumber.getText()));
-            if(c.verify(txtUsername.getText(), txtPassword.getText())){
+            //Customer c = Customer.open(Integer.parseInt(txtAccountNumber.getText()));
+            Account a = Account.open(txtUsername.getText());
+            if(a instanceof Employee){
+                //Employee e = (Employee) a;
+                //New UI here to request acc #
+                //Customer c = Account.open(accnum);
+                System.out.println("Employee acc");
+            }else {
+                Customer c = (Customer) a;
+                if(c.verify(txtUsername.getText(), txtPassword.getText())){
                 new AccountUI(c).setVisible(true);
                 dispose();
-            }else{
-                diaInvalidLogin.setVisible(true);
-                diaInvalidLogin.setLocationRelativeTo(null);
+                }else{
+                    diaInvalidLogin.setVisible(true);
+                    diaInvalidLogin.setLocationRelativeTo(null);
+                }
             }
         }catch (Exception e) {
             e.printStackTrace();

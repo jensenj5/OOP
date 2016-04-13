@@ -16,7 +16,7 @@ public class VirtualScanner {
     public VirtualScanner(int rfid, int entrance, int exit) {
         this.rfid = rfid;
         this.entrance = entrance;
-        this.exit = exit;
+        this.exit = exit;/*
         try{
             Customer c = Customer.open(rfid);
             c.generateCharge(Length(), new Lane(entrance, exit).getPrice());
@@ -24,7 +24,7 @@ public class VirtualScanner {
         }catch(Exception e){
             e.printStackTrace();
             //This will pass license plate info from camera to DMV to be manually billed
-        }
+        }*/
         
     }
     
