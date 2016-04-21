@@ -8,13 +8,15 @@ package eztagserver;
 
 import java.io.*;
 import java.security.*;
+import java.lang.Thread;
+import java.net.Socket;
 //import java.util.*;
 
 /**
  *
  * @author jjred88
  */
-public class Account implements Serializable{
+public class Account implements Serializable {
     
     //Variables        
     protected String uName, pass, fName, lName, address;
@@ -113,6 +115,23 @@ public class Account implements Serializable{
         
         return "";
     }
+	
+	public static Account open(int i){
+		try {
+            String fileName = search(Integer.toString(i));
+            Account c;
+            if(fileName.isEmpty())
+                throw new Exception("No such account");
+            
+            FileInputStream streamIn = new FileInputStream("accounts/" + fileName);
+            ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);
+            c = (Customer) objectinputstream.readObject();
+            return c;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+	}
     
     public static Account open(String s){
         try {
@@ -126,7 +145,7 @@ public class Account implements Serializable{
             if(fileName.endsWith(".ser"))
                 c = (Employee) objectinputstream.readObject();
             else
-                c = (Customer) objectinputstream.readObject();
+                c = (Account) objectinputstream.readObject();
             return c;
         }catch (Exception e) {
             e.printStackTrace();

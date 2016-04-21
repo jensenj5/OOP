@@ -5,7 +5,11 @@
  */
 package eztagclient;
 
-import eztagserver.*;
+//import eztagserver.*;
+import eztagserver.Customer;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.*;
 //import eztagclient.*;
 
 /**
@@ -13,13 +17,31 @@ import eztagserver.*;
  * @author red
  */
 public class LoginUI extends javax.swing.JFrame {
+    Socket sock = null;
+    //ObjectOutputStream output = null;
+    //ObjectInputStream input = null;
+    String msg = "Login";
+
 
     /**
      * Creates new form Login
      */
     public LoginUI() {
-        initComponents();
-        this.setLocationRelativeTo(null);
+        try{
+            Socket sock = new Socket(EZTag.SERVER, EZTag.SERVER_PORT);
+            //socket = sock;
+            //final ObjectOutputStream output = new ObjectOutputStream(sock.getOutputStream());
+            //final ObjectInputStream input = new ObjectInputStream(sock.getInputStream());
+            EZTag.output = new ObjectOutputStream(sock.getOutputStream());
+            EZTag.input = new ObjectInputStream(sock.getInputStream());
+            EZTag.output.writeObject(msg);
+            initComponents();
+            this.setLocationRelativeTo(null);
+        }catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace(System.err);
+        }
+        
     }
 
     /**
@@ -205,27 +227,28 @@ public class LoginUI extends javax.swing.JFrame {
             new AccountUI(Integer.parseInt(txtAccountNumber.getText())).setVisible(true);
         }*/
         try{
-            //Customer c = Customer.open(Integer.parseInt(txtAccountNumber.getText()));
-            Account a = Account.open(txtUsername.getText());
-            if(a instanceof Employee){
-                //Employee e = (Employee) a;
-                //New UI here to request acc #
-                //Customer c = Account.open(accnum);
-                System.out.println("Employee acc");
-            }else {
-                Customer c = (Customer) a;
-                if(c.verify(txtUsername.getText(), txtPassword.getText())){
-                new AccountUI(c).setVisible(true);
+            //final ObjectOutputStream output = new ObjectOutputStream(sock.getOutputStream());
+            //final ObjectInputStream input = new ObjectInputStream(sock.getInputStream());
+            System.out.println("check1");
+            msg = txtUsername.getText();
+            EZTag.output.writeObject(msg);
+            System.out.println("check2");
+            msg = txtPassword.getText();
+            EZTag.output.writeObject(msg);
+            System.out.println("check3");
+            msg = (String)EZTag.input.readObject();
+            System.out.println("check4");
+            if(msg.equals("Customer")){
+                new AccountUI((Customer)EZTag.input.readObject(), sock).setVisible(true);
                 dispose();
-                }else{
-                    diaInvalidLogin.setVisible(true);
-                    diaInvalidLogin.setLocationRelativeTo(null);
-                }
+            }
+            if(msg.equals("Invalid")){
+                diaInvalidLogin.setVisible(true);
+                diaInvalidLogin.setLocationRelativeTo(null);
             }
         }catch (Exception e) {
-            e.printStackTrace();
-            diaNoAcc.setVisible(true);
-            diaNoAcc.setLocationRelativeTo(null);
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace(System.err);
         }
     }//GEN-LAST:event_btnGoActionPerformed
 

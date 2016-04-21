@@ -85,9 +85,6 @@ public class Customer extends Account {
     //Other functions
     public void save(){
         try {
-            String fileName = search(encrypt(uName));
-            if(!fileName.isEmpty())
-                throw new Exception("Username already in use!");
             FileOutputStream fout = new FileOutputStream("accounts/" + encrypt(uName) + "." + accNum);
             ObjectOutputStream oos = new ObjectOutputStream(fout);
             oos.writeObject(this);
@@ -98,6 +95,13 @@ public class Customer extends Account {
             System.exit(0);
         }
     }
+	public Boolean exists(){
+		String fileName = search(encrypt(uName));
+        if(fileName.isEmpty())
+            //throw new Exception("Username already in use!");
+			return false;
+		return true;
+	}
     
     public void generateCharge(int len, double price){
         balance -= (len * price);

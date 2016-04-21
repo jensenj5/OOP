@@ -6,25 +6,33 @@
 package eztagclient;
 
 import eztagserver.Customer;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.*;
 
 /**
  *
  * @author red
  */
 public class AccountUI extends javax.swing.JFrame {
+    Socket sock = null;
+    //ObjectOutputStream output = null;
+    //ObjectInputStream input = null;
+    
 
     /**
      * Creates new form AccountUI
      */
     public AccountUI() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        //this.setLocationRelativeTo(null);
     }
     
-    public AccountUI(Customer c) {
+    public AccountUI(Customer c, Socket socket) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.c = c;
+        this.sock = socket;
         txtAccountNumber.setText(Integer.toString(c.getAccNum()));
         txtBalance.setText(Double.toString(c.getBalance()));
         txtFirstName.setText(c.getfName());
@@ -235,9 +243,14 @@ public class AccountUI extends javax.swing.JFrame {
         c.setMake(txtMake.getText());
         c.setModel(txtModel.getText());
         c.setPlate(txtLicensePlate.getText());
-        c.save();
+        try{
+        EZTag.output.writeObject(c);
         diaUpdateSuccess.setLocationRelativeTo(null);
         diaUpdateSuccess.setVisible(true);
+        }catch(Exception e){
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace(System.err);
+        }
         
     }//GEN-LAST:event_btnGoActionPerformed
 

@@ -5,8 +5,11 @@
  */
 package eztagclient;
 
-import eztagserver.VirtualScanner;
-import eztagclient.EZTag;
+//import eztagserver.VirtualScanner;
+//import eztagclient.EZTag;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.*;
 
 /**
  *
@@ -18,8 +21,18 @@ public class VirtualScannerUI extends javax.swing.JFrame {
      * Creates new form VirtualScannerUI
      */
     public VirtualScannerUI() {
-        initComponents();
-        this.setLocationRelativeTo(null);
+        String msg = "Event";
+        try{
+            Socket sock = new Socket(EZTag.SERVER, EZTag.SERVER_PORT);
+            EZTag.output = new ObjectOutputStream(sock.getOutputStream());
+            EZTag.input = new ObjectInputStream(sock.getInputStream());
+            EZTag.output.writeObject(msg);
+            initComponents();
+            this.setLocationRelativeTo(null);
+        }catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace(System.err);
+        }
     }
 
     /**
@@ -129,9 +142,17 @@ public class VirtualScannerUI extends javax.swing.JFrame {
 
     private void btnGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoActionPerformed
         // TODO add your handling code here:
-        new VirtualScanner(Integer.parseInt(txtRFID.getText()), Integer.parseInt(txtEntrance.getText()), Integer.parseInt(txtExit.getText()));
-        new EZTag().setVisible(true);
-        dispose();
+		try{
+			EZTag.output.writeObject("Creating event");
+			EZTag.output.writeObject(Integer.parseInt(txtRFID.getText()));
+			EZTag.output.writeObject(Integer.parseInt(txtEntrance.getText()));
+			EZTag.output.writeObject(Integer.parseInt(txtExit.getText()));
+			new EZTag().setVisible(true);
+			dispose();
+		}catch(Exception e){
+			System.err.println("Error: " + e.getMessage());
+            e.printStackTrace(System.err);
+		}
     }//GEN-LAST:event_btnGoActionPerformed
 
     private void txtRFIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRFIDActionPerformed

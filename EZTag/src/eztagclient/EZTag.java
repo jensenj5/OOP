@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package eztagclient;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.*;
 
 /**
  *
@@ -14,7 +17,22 @@ public class EZTag extends javax.swing.JFrame {
     /**
      * Creates new form EZTag
      */
+    public static final int SERVER_PORT = 8765;
+    public static final String SERVER = "localhost";
+    static Socket sock = null;
+    static ObjectOutputStream output = null;
+    static ObjectInputStream input = null;
+    
     public EZTag() {
+        /*
+        try{
+            final Socket sock = new Socket(EZTag.SERVER, EZTag.SERVER_PORT);
+            output = new ObjectOutputStream(sock.getOutputStream());
+            input = new ObjectInputStream(sock.getInputStream());
+        }catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace(System.err);
+        }*/
         initComponents();
         this.setLocationRelativeTo(null);
     }

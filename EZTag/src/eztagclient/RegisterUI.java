@@ -6,20 +6,34 @@
 package eztagclient;
 
 import eztagserver.Customer;
-import eztagclient.EZTag;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.*;
 
 /**
  *
  * @author red
  */
 public class RegisterUI extends javax.swing.JFrame {
+    Socket sock = null;
 
     /**
      * Creates new form Register
      */
     public RegisterUI() {
-        initComponents();
-        this.setLocationRelativeTo(null);
+        String msg = "Register";
+        try{
+            sock = new Socket(EZTag.SERVER, EZTag.SERVER_PORT);
+            EZTag.output = new ObjectOutputStream(sock.getOutputStream());
+            //output.flush();
+            EZTag.input = new ObjectInputStream(sock.getInputStream());
+            EZTag.output.writeObject(msg);
+            initComponents();
+            this.setLocationRelativeTo(null);
+        }catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace(System.err);
+        }
     }
 
     /**
@@ -259,9 +273,23 @@ public class RegisterUI extends javax.swing.JFrame {
         
         Customer acc = new Customer(Double.parseDouble(txtPayment.getText()), txtMake.getText(), txtModel.getText(), txtLicensePlate.getText(), txtCCNumber.getText(), txtUsername.getText(), txtPassword.getText(), txtFirstName.getText(), txtLastName.getText(), txtAddress.getText());
         txtAccNum.setText(Integer.toString(acc.getAccNum()));
-        diaAccNumConfirm.setLocationRelativeTo(null);
-        diaAccNumConfirm.setVisible(true);
-        acc.save();
+        try{
+            EZTag.output.writeObject(acc);
+			System.out.println("check");
+			int check = (int)EZTag.input.readObject();
+			if(check == 1){
+				System.out.println("check");
+				jLabel5.setText("Account created successfully!");
+			}else{
+				jLabel5.setText("Account already exists!");
+			}
+            diaAccNumConfirm.setLocationRelativeTo(null);
+            diaAccNumConfirm.setVisible(true);
+        }catch(Exception e){
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace(System.err);
+        }
+        
         //dispose();
     }//GEN-LAST:event_btnGoActionPerformed
 
