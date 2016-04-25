@@ -152,4 +152,11 @@ public class Account implements Serializable {
         }
         return null;
     }
+    
+    public Boolean exists(){
+        String fileName = search(encrypt(uName));
+        if(fileName.isEmpty())
+            return false;
+        return true;
+    }
 }

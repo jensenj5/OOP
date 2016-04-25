@@ -229,17 +229,17 @@ public class LoginUI extends javax.swing.JFrame {
         try{
             //final ObjectOutputStream output = new ObjectOutputStream(sock.getOutputStream());
             //final ObjectInputStream input = new ObjectInputStream(sock.getInputStream());
-            System.out.println("check1");
             msg = txtUsername.getText();
             EZTag.output.writeObject(msg);
-            System.out.println("check2");
             msg = txtPassword.getText();
             EZTag.output.writeObject(msg);
-            System.out.println("check3");
             msg = (String)EZTag.input.readObject();
-            System.out.println("check4");
             if(msg.equals("Customer")){
                 new AccountUI((Customer)EZTag.input.readObject(), sock).setVisible(true);
+                dispose();
+            }
+            if(msg.equals("Employee")){
+                new EmployeeUI().setVisible(true);
                 dispose();
             }
             if(msg.equals("Invalid")){

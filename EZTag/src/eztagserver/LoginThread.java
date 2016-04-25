@@ -27,46 +27,55 @@ public class LoginThread extends Thread{
     
     public void run(){        
         try{
-			String user, pw;
-			do{
-            System.out.println("test");
-            //final ObjectOutputStream output = new ObjectOutputStream(sock.getOutputStream());
-            System.out.println("test");
-            //final ObjectInputStream input = new ObjectInputStream(sock.getInputStream());
-            
-            //while(true){
-            System.out.println("Login");
-            user = (String)input.readObject();
-            System.out.println(user);
-            pw = (String)input.readObject();
-            System.out.println(pw);
-            //System.out.println(msg);
-            //Customer c = Customer.open(Integer.parseInt(txtAccountNumber.getText()));
-            System.out.println("Attempting to open account");
-            Account a = Account.open(user);
-            if(a instanceof Employee){
-                output.writeObject("Employee");
-                //Employee e = (Employee) a;
-                //New UI here to request acc #
-                //Customer c = Account.open(accnum);
-                System.out.println("Employee acc");
-            }else {
-                Customer c = (Customer) a;
-				if(c == null)
-					output.writeObject("Invalid");
-				else if(c.verify(user, pw)){
-                    output.writeObject("Customer");
-                    output.writeObject(c);
-					while(true){
-						c = (Customer)input.readObject();// (Strig)input.readObject();
-						c.save();
-					}
-                
-                }else{
-                    output.writeObject("Invalid");
+            String user, pw, msg;
+            do{
+                user = (String)input.readObject();
+                pw = (String)input.readObject();
+                Account a = Account.open(user);
+                if(a instanceof Employee){
+                    Employee e = (Employee) a;
+                    //output.writeObject("Employee");
+                    if(e == null)
+                        output.writeObject("Invalid");
+                    else if(e.verify(user, pw)){
+                        output.writeObject("Employee");
+                        //output.writeObject(e);
+                        //while(true){
+                        //    e = (employee)
+                        //}
+                    }
+                    while(true){//Open multiple accounts while logged in
+                        msg = (String)input.readObject();//Receives username/acc #
+                        Customer c = (Customer)Account.open(msg);//If username
+                        System.out.println("att username");
+                        if(c == null){
+                            c = (Customer)Account.open(Integer.parseInt(msg));//If acc#
+                            System.out.println("att acc");
+                        }
+                        if(c == null)
+                            System.out.println("No acc");
+                        output.writeObject(c);//Send customer account
+                        while(true){//Can make multiple changes to account
+                            c = (Customer)input.readObject();// (Strig)input.readObject();
+                            c.save();
+                        }
+                    }
+                }else {
+                    Customer c = (Customer) a;
+                    if(c == null)
+                        output.writeObject("Invalid");
+                    else if(c.verify(user, pw)){
+                        output.writeObject("Customer");
+                        output.writeObject(c);
+                        while(true){
+                            c = (Customer)input.readObject();// (Strig)input.readObject();
+                            c.save();
+                        }
+                    }else{
+                        output.writeObject("Invalid");
+                    }
                 }
-            }
-			}while(user != null);
+            }while(user != null);
         }catch(Exception e){
 			System.err.println("Error: " + e.getMessage());
 			e.printStackTrace(System.err);

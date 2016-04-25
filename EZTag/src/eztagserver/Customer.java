@@ -95,13 +95,8 @@ public class Customer extends Account {
             System.exit(0);
         }
     }
-	public Boolean exists(){
-		String fileName = search(encrypt(uName));
-        if(fileName.isEmpty())
-            //throw new Exception("Username already in use!");
-			return false;
-		return true;
-	}
+    
+
     
     public void generateCharge(int len, double price){
         balance -= (len * price);
