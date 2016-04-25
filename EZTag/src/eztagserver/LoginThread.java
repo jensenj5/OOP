@@ -51,9 +51,13 @@ public class LoginThread extends Thread{
                         if(c != null){
                             output.writeObject(true);
                             output.writeObject(c);
-                            while(true){//Can make multiple changes to account
+                            boolean j = true;
+                            while(j){//Can make multiple changes to account
                                 c = (Customer)input.readObject();// (Strig)input.readObject();
-                                c.save();
+                                if (c == null)
+                                    j = false;
+                                else
+                                    c.save();
                             }
                         }else
                             output.writeObject(false);

@@ -257,11 +257,17 @@ public class AccountUI extends javax.swing.JFrame {
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
-        dispose();
-        if(emp)
-            new EmployeeUI().setVisible(true);
-        else
-            new LoginUI().setVisible(true);
+        try{
+            dispose();
+            if(emp){
+                EZTag.output.writeObject(null);
+                new EmployeeUI().setVisible(true);
+            }else
+                new LoginUI().setVisible(true);
+        }catch(Exception e){
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace(System.err);
+        }
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
