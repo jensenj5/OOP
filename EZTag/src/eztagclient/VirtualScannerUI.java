@@ -144,7 +144,7 @@ public class VirtualScannerUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		try{
 			EZTag.output.writeObject("Creating event");
-			EZTag.output.writeObject(Integer.parseInt(txtRFID.getText()));
+			EZTag.output.writeObject(txtRFID.getText());
 			EZTag.output.writeObject(Integer.parseInt(txtEntrance.getText()));
 			EZTag.output.writeObject(Integer.parseInt(txtExit.getText()));
 			new EZTag().setVisible(true);
