@@ -24,7 +24,7 @@ public class EZTag {
     
     public static void main(String[] args) {
         // TODO code application logic here
-        //Employee a = new Employee(123456789, "admin", "admin", "Jason", "Jensen", "1 Main");
+        //Employee a = new Employee(123456789, "admin", "admin", "Carrie", "Dumit", "1 Main");
         //a.save();
         try{
 	    // This is basically just listens for new client connections

@@ -48,7 +48,6 @@ public class EmployeeUI extends javax.swing.JFrame {
 
         jLabel3.setText("Account Number:");
 
-        txtAccountNumber.setText(" ");
         txtAccountNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAccountNumberActionPerformed(evt);
@@ -58,7 +57,6 @@ public class EmployeeUI extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Username:");
 
-        txtUsername.setText(" ");
         txtUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsernameActionPerformed(evt);
@@ -145,21 +143,26 @@ public class EmployeeUI extends javax.swing.JFrame {
             //final ObjectOutputStream output = new ObjectOutputStream(sock.getOutputStream());
             //final ObjectInputStream input = new ObjectInputStream(sock.getInputStream());
             msg = txtAccountNumber.getText();
-            if(msg == ""){
+            if(msg.equals("")){
                 System.out.println("no acc # err");
                 msg = txtUsername.getText();
             }
-            if(msg == ""){
+            if(msg.equals("")){
                 System.out.println(msg);
                 System.out.println("err");
+            }else{
+                System.out.println(msg);
+                System.out.println("check");
+                EZTag.output.writeObject(msg);//Sends username/acc %
+                System.out.println("check2");
+                //Customer c = (Customer) EZTag.input.readObject();//Get cust account
+                if((boolean)EZTag.input.readObject()){
+                    System.out.println("chekc23");
+                    new AccountUI((Customer)EZTag.input.readObject(), sock, true).setVisible(true);
+                    dispose();
+                }
+                System.out.println("check32");
             }
-            System.out.println(msg);
-            System.out.println("check");
-            EZTag.output.writeObject(msg);//Sends username/acc %
-            System.out.println("check2");
-            //Customer c = (Customer) EZTag.input.readObject();//Get cust account
-            new AccountUI((Customer)EZTag.input.readObject(), sock).setVisible(true);
-            dispose();
         }catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
             e.printStackTrace(System.err);

@@ -28,11 +28,12 @@ public class AccountUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
     
-    public AccountUI(Customer c, Socket socket) {
+    public AccountUI(Customer c, Socket socket, Boolean emp) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.c = c;
         this.sock = socket;
+        this.emp = emp;
         txtAccountNumber.setText(Integer.toString(c.getAccNum()));
         txtBalance.setText(Double.toString(c.getBalance()));
         txtFirstName.setText(c.getfName());
@@ -257,7 +258,10 @@ public class AccountUI extends javax.swing.JFrame {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
         dispose();
-        new LoginUI().setVisible(true);
+        if(emp)
+            new EmployeeUI().setVisible(true);
+        else
+            new LoginUI().setVisible(true);
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -299,6 +303,7 @@ public class AccountUI extends javax.swing.JFrame {
             }
         });
     }
+    private Boolean emp;
     private Customer c;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;

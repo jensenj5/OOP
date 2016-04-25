@@ -25,14 +25,14 @@ public class EventThread extends Thread{
     }
     
     public void run(){
-        String msg;
-		int rfid, ent, exit;
+        String msg, rfid;
+        int ent, exit;
         try{
             //final ObjectInputStream input = new ObjectInputStream(sock.getInputStream());
             //final ObjectOutputStream output = new ObjectOutputStream(sock.getOutputStream());
             msg = (String)input.readObject();
             System.out.println(msg);
-			rfid = (int)input.readObject();
+			rfid = (String)input.readObject();
 			ent = (int)input.readObject();
 			exit = (int)input.readObject();
 			new VirtualScanner(rfid, ent, exit);

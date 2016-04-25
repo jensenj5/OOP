@@ -115,7 +115,7 @@ public class Account implements Serializable {
         
         return "";
     }
-	
+/*	
 	public static Account open(int i){
 		try {
             String fileName = search(Integer.toString(i));
@@ -132,24 +132,26 @@ public class Account implements Serializable {
         }
         return null;
 	}
-    
+*/    
     public static Account open(String s){
         try {
             String fileName = search(encrypt(s));
             Account c;
+            if(fileName.isEmpty()){
+                fileName = search(s);
+            }
             if(fileName.isEmpty())
                 throw new Exception("No such account");
             
             FileInputStream streamIn = new FileInputStream("accounts/" + fileName);
             ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);
-            if(fileName.endsWith(".ser"))
-                c = (Employee) objectinputstream.readObject();
-            else
-                c = (Account) objectinputstream.readObject();
+            c = (Account) objectinputstream.readObject();
             return c;
         }catch (Exception e) {
             e.printStackTrace();
+            System.out.println("no acc23");
         }
+        System.out.println("return null");
         return null;
     }
     

@@ -31,11 +31,12 @@ public class RegThread extends Thread{
             
             Customer c = (Customer)input.readObject();
 			System.out.println(c.exists());
+                        
 			if(c.exists()){
-				output.writeObject(-1);
+				output.writeObject(true);
 			}else{
 				c.save();
-				output.writeObject(1);
+				output.writeObject(false);
 			}
             //System.out.println(msg);
         }catch(Exception e){

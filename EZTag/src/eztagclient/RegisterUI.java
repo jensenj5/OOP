@@ -90,7 +90,7 @@ public class RegisterUI extends javax.swing.JFrame {
         });
 
         txtAccNum.setEditable(false);
-        txtAccNum.setBackground(new java.awt.Color(214, 214, 214));
+        //txtAccNum.setBackground(new java.awt.Color(214, 214, 214));
         txtAccNum.setFont(new java.awt.Font("Noto Sans", 0, 24)); // NOI18N
         txtAccNum.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         txtAccNum.addActionListener(new java.awt.event.ActionListener() {
@@ -272,16 +272,18 @@ public class RegisterUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         Customer acc = new Customer(Double.parseDouble(txtPayment.getText()), txtMake.getText(), txtModel.getText(), txtLicensePlate.getText(), txtCCNumber.getText(), txtUsername.getText(), txtPassword.getText(), txtFirstName.getText(), txtLastName.getText(), txtAddress.getText());
-        txtAccNum.setText(Integer.toString(acc.getAccNum()));
         try{
             EZTag.output.writeObject(acc);
 			System.out.println("check");
-			int check = (int)EZTag.input.readObject();
-			if(check == 1){
-				System.out.println("check");
-				jLabel5.setText("Account created successfully!");
+			boolean check = (boolean)EZTag.input.readObject();
+			if(check == true){
+                            jLabel5.setText("Account already exists!");
+                            txtAccNum.setBackground(new java.awt.Color(214, 214, 214, 0));
+                            jLabel6.setText("");
 			}else{
-				jLabel5.setText("Account already exists!");
+                            txtAccNum.setText(Integer.toString(acc.getAccNum()));
+                            txtAccNum.setBackground(new java.awt.Color(214, 214, 214));
+                            //jLabel5.setText("Account created successfully!");
 			}
             diaAccNumConfirm.setLocationRelativeTo(null);
             diaAccNumConfirm.setVisible(true);

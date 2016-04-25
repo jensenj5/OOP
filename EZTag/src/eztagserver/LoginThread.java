@@ -47,18 +47,16 @@ public class LoginThread extends Thread{
                     while(true){//Open multiple accounts while logged in
                         msg = (String)input.readObject();//Receives username/acc #
                         Customer c = (Customer)Account.open(msg);//If username
-                        System.out.println("att username");
-                        if(c == null){
-                            c = (Customer)Account.open(Integer.parseInt(msg));//If acc#
-                            System.out.println("att acc");
-                        }
-                        if(c == null)
-                            System.out.println("No acc");
-                        output.writeObject(c);//Send customer account
-                        while(true){//Can make multiple changes to account
-                            c = (Customer)input.readObject();// (Strig)input.readObject();
-                            c.save();
-                        }
+                        System.out.println("1");
+                        if(c != null){
+                            output.writeObject(true);
+                            output.writeObject(c);
+                            while(true){//Can make multiple changes to account
+                                c = (Customer)input.readObject();// (Strig)input.readObject();
+                                c.save();
+                            }
+                        }else
+                            output.writeObject(false);
                     }
                 }else {
                     Customer c = (Customer) a;

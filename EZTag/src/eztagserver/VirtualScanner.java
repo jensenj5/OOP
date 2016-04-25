@@ -12,10 +12,11 @@ import java.net.Socket;
  * @author jjred88
  */
 public class VirtualScanner extends Thread{
-    private int rfid, entrance, exit;
+    private String rfid;
+    private int entrance, exit;
     
     //Constructor
-    public VirtualScanner(int rfid, int entrance, int exit) {
+    public VirtualScanner(String rfid, int entrance, int exit) {
         this.rfid = rfid;
         this.entrance = entrance;
         this.exit = exit;
@@ -32,11 +33,11 @@ public class VirtualScanner extends Thread{
     }
     
     //Setters and Getters
-    public int getRfid() {
+    public String getRfid() {
         return rfid;
     }
 
-    public void setRfid(int rfid) {
+    public void setRfid(String rfid) {
         this.rfid = rfid;
     }
 
