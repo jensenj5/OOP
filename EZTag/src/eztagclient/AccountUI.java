@@ -25,7 +25,7 @@ public class AccountUI extends javax.swing.JFrame {
      */
     public AccountUI() {
         initComponents();
-        //this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
     }
     
     public AccountUI(Customer c, Socket socket) {
